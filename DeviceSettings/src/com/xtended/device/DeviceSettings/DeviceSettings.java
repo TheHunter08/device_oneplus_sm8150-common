@@ -56,10 +56,6 @@ public class DeviceSettings extends PreferenceFragment
     public static final String KEY_NIGHT_SWITCH = "night";
     public static final String KEY_WIDECOLOR_SWITCH = "widecolor";
 
-    private static final String KEY_CATEGORY_REFRESH = "refresh";
-    public static final String KEY_REFRESH_RATE = "refresh_rate";
-    public static final String KEY_AUTO_REFRESH_RATE = "auto_refresh_rate";
-
     public static final String KEY_VIBSTRENGTH = "vib_strength";
 
 
@@ -67,8 +63,6 @@ public class DeviceSettings extends PreferenceFragment
 
     private static TwoStatePreference mHBMModeSwitch;
     private static TwoStatePreference mDCModeSwitch;
-    private static TwoStatePreference mRefreshRate;
-    private static SwitchPreference mAutoRefreshRate;
     private ListPreference mTopKeyPref;
     private ListPreference mMiddleKeyPref;
     private ListPreference mBottomKeyPref;
@@ -104,24 +98,8 @@ public class DeviceSettings extends PreferenceFragment
         mHBMModeSwitch.setChecked(HBMModeSwitch.isCurrentlyEnabled(this.getContext()));
         mHBMModeSwitch.setOnPreferenceChangeListener(new HBMModeSwitch());
 
-        mAutoRefreshRate = (SwitchPreference) findPreference(KEY_AUTO_REFRESH_RATE);
-        mAutoRefreshRate.setChecked(AutoRefreshRateSwitch.isCurrentlyEnabled(this.getContext()));
-        mAutoRefreshRate.setOnPreferenceChangeListener(new AutoRefreshRateSwitch(getContext()));
-
-        mRefreshRate = (TwoStatePreference) findPreference(KEY_REFRESH_RATE);
-        mRefreshRate.setEnabled(!AutoRefreshRateSwitch.isCurrentlyEnabled(this.getContext()));
-        mRefreshRate.setChecked(RefreshRateSwitch.isCurrentlyEnabled(this.getContext()));
-        mRefreshRate.setOnPreferenceChangeListener(new RefreshRateSwitch(getContext()));
-
     }
 
-    @Override
-    public boolean onPreferenceTreeClick(Preference preference) {
-        if (preference == mAutoRefreshRate) {
-              mRefreshRate.setEnabled(!AutoRefreshRateSwitch.isCurrentlyEnabled(this.getContext()));
-        }
-        return super.onPreferenceTreeClick(preference);
-    }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
