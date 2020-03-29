@@ -7,7 +7,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/oneplus/sm8150-common/sm8150-common-vendor.mk)
+$(call inherit-product-if-exists, vendor/oneplus/guacamoleb/guacamoleb-vendor.mk)
 
 # Vendor properties
 -include $(LOCAL_PATH)/vendor_props.mk
@@ -20,6 +20,7 @@ PRODUCT_COPY_FILES += \
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-xtended
+
 
 # A/B
 AB_OTA_UPDATER := true
